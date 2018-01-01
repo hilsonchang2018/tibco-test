@@ -9,7 +9,7 @@
              [clj-time.local :as l]
              [clj-time.format :as f]
              [cheshire.core :as cheshire]
-             [redbull-transporter.story.tibco-message :refer (add-message)]
+             [tibco-test.tibco-message :refer (add-a-message)]
   (:gen-class))
   (:import (java.sql SQLException)))
 
@@ -112,7 +112,7 @@
                       :extracted-content (cheshire/generate-string content)
                     }
         ]
-  (add-message whole-msg)
+  (add-a-message whole-msg)
   (println whole-msg)
 ))
 
@@ -165,6 +165,7 @@
 
 (defn -main  [& args]
   (let [{:keys [options exit-message ok?]} (validate-args args)]
+    (add-shutdown-hook destroy)
     (load-db-file "tmp/db.def")
     (if exit-message
       (exit (if ok? 0 1) exit-message)
