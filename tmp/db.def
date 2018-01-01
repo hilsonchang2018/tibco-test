@@ -1,6 +1,0 @@
-;; database connection config
-{:dbms-type :mssql
- :host "121.42.147.199"
- :user "redbull"
- :password "7EcxLeX&8gk)UV"
- :db "test_cep"}
